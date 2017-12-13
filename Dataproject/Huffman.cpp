@@ -28,23 +28,19 @@ public:
 	~BinaryTree() {};
 	string str="";
 	void makeTree(const T&ele, BinaryTree<T>&, BinaryTree<T>&);
-	void visit(Node<T>*t) { if (t->element != 0)cout << t->element  << " "<<this->str << endl; }
-	void postorder(Node<T>*t) {
+	void printhuffcode(Node<T>*t) {
 		if (t->left != NULL) {
 			str += "0";
-			postorder(t->left);
+			printhuffcode(t->left);
 		}
 		if (t->right != NULL) {
 			str += "1";
-			postorder(t->right);
-			str = str.substr(0, str.size() - 1);
-			return;
+			printhuffcode(t->right);
 		}
 		else {
 			cout << t->element << " " << str << endl;
-			str = str.substr(0, str.size() - 1);
-			return;
 		}
+		str = str.substr(0, str.size() - 1);
 	}
 };
 template<class T>
@@ -94,7 +90,7 @@ int main() {
 	int a[7] = { 0,2,3,4,4,5,7 };
 	char b[7] = { '0','f','o','r','g','e','t' };
 	BinaryTree<char>*x = huffmanTree(b, a, 6);
-	x->postorder(x->root);
+	x->printhuffcode(x->root);
 	system("pause");
 	return 0;
 }
