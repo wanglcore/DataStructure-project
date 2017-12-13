@@ -32,8 +32,21 @@ public:
 	void levelorder(TreeNode<T>*);
 	void visit(TreeNode<T>*tree);
 	TreeNode<T>* findlast();
+	T*heapsort(T*arr, int length);
 	void init(vector<T>ele, int length);
 };
+template<class T>
+T*MaxHeap<T>::heapsort(T*arr, int length) {
+	for (int i = 0; i < length; i++) {
+		cout << arr[i];
+		this->push(arr[i]);
+	}
+	for (int i = 0; i < length; i++) {
+		arr[i] = this->root->key;
+		this->pop();
+	}
+	return arr;
+}
 template<class T>
 TreeNode<T>* MaxHeap<T>::findlast() {//寻找当前堆中的最后一个节点
 	queue<TreeNode<T>*>q;
@@ -53,6 +66,10 @@ template<class T>
 TreeNode<T>*MaxHeap<T>::pop() {//删除堆中的最大元素
 	//root->key.~T();
 	TreeNode<T>*t = findlast();//首先找到最后一个节点
+	if (t->parent == NULL) {
+		delete t;
+		return NULL;
+	}
 	T element = t->key;
 	if (t->parent->right != NULL) {//删除该节点
 		t->parent->right = NULL;

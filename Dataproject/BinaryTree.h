@@ -36,7 +36,44 @@ public:
 	int height() { return height(root); }
 	TreeNode<T>* recoustruct(vector<T>preor, vector<T>inor);//已知树的 中序遍历和先序遍历，重构树
 	int getsize(TreeNode<T>*t);//树的节点个数
+	int ss(TreeNode<T>*t);
 };
+template<class T>
+int BinaryTree<T>::ss(TreeNode<T>*t) {
+	Queue<TreeNode<T>*>q;
+	if (t == NULL)
+		return 0;
+	q.push(t);
+	q.push(NULL);
+	int maxnum = 1, level = 1, num = 0;
+	TreeNode<T>*p;
+	while (!q.empty()) {
+		p = q.front();
+		q.pop();
+		if (p == NULL) {
+			if (q.empty()) {
+				break;
+			}
+			level++;
+			if (maxnum < num) {
+				maxnum = num;
+				num = 0;
+			}
+			q.push(NULL);
+		}
+		else {
+			if (p->left != NULL) {
+				num++;
+				q.push(p->left);
+			}
+			if (p->right != NULL) {
+				num++;
+				q.push(p->right);
+			}
+		}
+	}
+	return maxnum;
+}
 template<class T>
 int BinaryTree<T>::getsize(TreeNode<T>*t) {//使用递归来计算节点个数
 	if (t == NULL)
