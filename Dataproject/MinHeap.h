@@ -21,19 +21,19 @@ private:
 	T*heap;
 };
 template<class T>
-MinHeap<T>::MinHeap(int init) {
+MinHeap<T>::MinHeap(int init) {//使用数组实现最小堆
 	arraylength = init;
 	heap = new T[arraylength];
 	heapsize = 0;
 }
 template<class T>
-void MinHeap<T>::push(const T&element) {
+void MinHeap<T>::push(const T&element) {//向队中添加元素
 	if (heapsize == arraylength) {
 		//
 	}
-	int currentNode = ++heapsize;
-	while (currentNode != 1 && heap[currentNode / 2] > element) {
-		heap[currentNode] = heap[currentNode / 2];
+	int currentNode = ++heapsize;//将新元素插入到最后，然后重构
+	while (currentNode != 1 && heap[currentNode / 2] > element) {//节点不是根节点并且父节点大于当前节点
+		heap[currentNode] = heap[currentNode / 2];//节点上移
 		currentNode /= 2;
 	}
 	heap[currentNode] = element;
@@ -60,11 +60,11 @@ void MinHeap<T>::pop() {
 	heap[currNode] = lastele;
 }
 template<class T>
-void MinHeap<T>::initialize(T*theheap, int thelength) {
+void MinHeap<T>::initialize(T*theheap, int thelength) {//堆的初始化
 	delete[]heap;
 	heap = theheap;
 	heapsize = thelength;
-	for (int root = heapsize / 2; root >= 1; root--) {
+	for (int root = heapsize / 2; root >= 1; root--) {//重构
 		T rootele = heap[root];
 		int child = root * 2;
 		while (child <= heapsize) {

@@ -19,12 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="binaryTree.cpp" />
     <ClCompile Include="Huffman.cpp" />
     <ClCompile Include="MaxHeap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="MaxHeap.h" />
     <ClInclude Include="MinHeap.h" />
+    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
